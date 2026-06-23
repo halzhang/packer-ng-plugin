@@ -1,5 +1,5 @@
 include ':common'
-include ':plugin'
+// include ':plugin'
 include ':cli'
-include ':helper'
-include ':app'
+// include ':helper'
+// include ':app'

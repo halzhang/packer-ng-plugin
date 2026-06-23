@@ -19,8 +19,11 @@ public class Main {
     public static final String OUTPUT = "output";
 
     public static void main(String[] args) {
-        if ((args.length == 0)
-                || ("--help".equals(args[0]))
+        if (args.length == 0) {
+            PackerGui.launch();
+            return;
+        }
+        if (("--help".equals(args[0]))
                 || ("-h".equals(args[0]))
                 || "-v".equals(args[0])
                 || "--version".equals(args[0])) {

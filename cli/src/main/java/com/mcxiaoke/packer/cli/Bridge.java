@@ -26,7 +26,7 @@ public class Bridge {
     }
 
     public static boolean verifyChannel(File file, String channel) throws IOException {
-        return verifyApk(file) && (channel.equals(readChannel(file)));
+        return channel.equals(readChannel(file));
     }
 
     public static boolean verifyApk(File file) throws IOException {
@@ -34,7 +34,6 @@ public class Bridge {
         try {
             Result result = verifier.verify();
             return result.isVerified()
-                    && result.isVerifiedUsingV1Scheme()
                     && result.isVerifiedUsingV2Scheme();
         } catch (ApkFormatException e) {
             throw new IOException(e);

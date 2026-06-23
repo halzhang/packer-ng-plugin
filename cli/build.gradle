@@ -8,12 +8,16 @@ repositories {
 apply plugin: 'java'
 //apply plugin: 'application'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
 
 dependencies {
-    compile project(":common")
-    compile 'com.android.tools.build:apksig:2.3.3'
+    implementation project(":common")
+    implementation 'com.android.tools.build:apksig:3.0.1'
 }
 
 //mainClassName = 'com.mcxiaoke.packer.cli.Main'
@@ -21,7 +25,7 @@ dependencies {
 task fatJar(type: Jar) {
     with jar
     from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
     manifest {
         attributes('Implementation-Title': 'PackerNg 2 Executable Jar',
@@ -41,4 +45,4 @@ task distJar(type: Copy, dependsOn: fatJar) {
 }
 
 // apply from: '../jar.gradle'
-apply from: '../gradle-mvn-push.gradle'
+// apply from: '../gradle-mvn-push.gradle'
